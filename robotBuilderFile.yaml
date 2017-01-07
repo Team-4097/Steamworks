@@ -120,7 +120,7 @@ Children:
         validators: null
         value: []
       Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Default Command, type: Command, validators: null, value: None}
+        name: Default Command, type: Command, validators: null, value: joystickDrive}
       Constants: !!robotbuilder.data.properties.ConstantsProperty
         default: []
         name: Constants
@@ -154,7 +154,7 @@ Children:
         validators: null
         value: []
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Requires, type: Subsystem, validators: null, value: None}
+        name: Requires, type: Subsystem, validators: null, value: driveTrain}
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
         default: &id004 []
         name: Parameter presets
@@ -163,7 +163,7 @@ Children:
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Command
-    Name: Autonomous Command
+    Name: joystickDrive
   Properties: {}
   Base: Commands
   Name: Commands
@@ -173,10 +173,10 @@ Properties:
   Export Commands: !!robotbuilder.data.properties.BooleanProperty {default: true,
     name: Export Commands, validators: null, value: true}
   Autonomous command parameters: !!robotbuilder.data.properties.ParametersProperty
-    default: []
+    default: &id005 []
     name: Autonomous command parameters
     validators: null
-    value: []
+    value: *id005
   Java Package: !!robotbuilder.data.properties.StringProperty {default: org.usfirst.frc0000,
     name: Java Package, validators: null, value: org.usfirst.frc4097}
   Use Default Java Package: !!robotbuilder.data.properties.BooleanProperty {default: true,
