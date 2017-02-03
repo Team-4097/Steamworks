@@ -43,7 +43,11 @@ public class climber extends Subsystem {
     public void takeJoytickInput(Joystick main){
     	if(main.getTrigger()){
     		climberMotor.set(1);
-    	}else{
+    	}
+    	else if(main.getRawButton(0)){
+    		climberMotor.set(-1);
+    	}
+    	else{
     		climberMotor.stopMotor();
     	}
     }
