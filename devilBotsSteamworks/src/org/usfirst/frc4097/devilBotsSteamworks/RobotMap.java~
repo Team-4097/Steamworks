@@ -49,7 +49,8 @@ public class RobotMap {
         driveTrainrobotDrive.setExpiration(0.1);
         driveTrainrobotDrive.setSensitivity(0.5);
         driveTrainrobotDrive.setMaxOutput(1.0);
-
+        driveTrainrobotDrive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
+        driveTrainrobotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
         climberclimberMotor = new Spark(3);
         LiveWindow.addActuator("climber", "climberMotor", (Spark) climberclimberMotor);
         
