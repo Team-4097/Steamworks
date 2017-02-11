@@ -42,6 +42,11 @@ public class driveTrain extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     
+    public void altDrive(float drive, float turn){
+    	robotDrive.arcadeDrive(drive, turn);
+    }
+    
+    
     public void takeJoytickInput(Joystick main){
     	robotDrive.arcadeDrive(main);
     }
