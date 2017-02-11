@@ -136,7 +136,7 @@ public class Robot extends IterativeRobot {
     		SmartDashboard.putNumber("Target Width", width);
     	}
     	//double turn = centerX - (IMG_WIDTH / 2);
-    	double drive = 0;
+    	double drive = (width - 150)/150;
     	
     	for(int i = 50; i > 0; i--){
     		drive += (width - 150)/150;
@@ -144,7 +144,7 @@ public class Robot extends IterativeRobot {
     	drive /= 50;
     	
     	
-    	driveBot.arcadeDrive(drive/1.5, 0);
+    	//driveBot.arcadeDrive(drive/1.5, 0);
     	//SmartDashboard.putNumber("Turn Speed", turn);
     	SmartDashboard.putNumber("Drive Speed", drive);
         
