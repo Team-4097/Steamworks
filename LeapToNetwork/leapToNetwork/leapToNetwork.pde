@@ -1,13 +1,22 @@
+import edu.wpi.first.wpilibj.networktables.*;
+import edu.wpi.first.wpilibj.networktables2.type.*;
+import edu.wpi.first.wpilibj.tables.*;
 import de.voidplus.leapmotion.*;
 
 
 LeapMotion leap;
+NetworkTable table;
 
 void setup() {
   size(800, 500);
   background(255);
 
   leap = new LeapMotion(this);
+  
+  NetworkTable.setClientMode();
+  NetworkTable.setIPAddress("localhost");
+  table = NetworkTable.getTable("LeapData");
+  
 }
 
 
@@ -32,6 +41,8 @@ void draw() {
   background(255);
   // ...
 
+
+
   int fps = leap.getFrameRate();
   for (Hand hand : leap.getHands ()) {
 
@@ -52,6 +63,11 @@ void draw() {
     float   sphereRadius       = hand.getSphereRadius();
 
     hand.draw();
+    
+    table.putNumber("Hand X Position",round(handPosition.x));
+    table.putNumber("Hand Y Position",round(handPosition.y));
+    table.putNumber("Hand Z Position",round(handPosition.z));
+    table.putNumber("Grabbing",round(handGrab));
 
     if (hand.hasArm()) {
       Arm     arm              = hand.getArm();
