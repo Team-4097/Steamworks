@@ -71,10 +71,11 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     RobotMap.init();
     
-    UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
-    camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
+    UsbCamera visionCamera = CameraServer.getInstance().startAutomaticCapture(0);
+    UsbCamera driveCamera = CameraServer.getInstance().startAutomaticCapture(1);
+    visionCamera.setResolution(IMG_WIDTH, IMG_HEIGHT);
     
-    visionThread = new VisionThread(camera, new GripPipeline(), pipeline -> {
+    visionThread = new VisionThread(visionCamera, new GripPipeline(), pipeline -> {
         if (!pipeline.filterContoursOutput().isEmpty()) {
             Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
             synchronized (imgLock) {
@@ -136,7 +137,7 @@ public class Robot extends IterativeRobot {
     		SmartDashboard.putNumber("Center of Target", centerX);
     		SmartDashboard.putNumber("Target Width", width);
     	}
-    	//double turn = centerX - (IMG_WIDTH / 2);
+    	double turn = centerX - (IMG_WIDTH / 2);
     	double drive = (width - 150)/150;
     	
     	for(int i = 50; i > 0; i--){
@@ -146,7 +147,7 @@ public class Robot extends IterativeRobot {
     	
     	
     	Robot.driveTrain.altDrive((float)drive/1.5f,0);
-    	//SmartDashboard.putNumber("Turn Speed", turn);
+    	SmartDashboard.putNumber("Turn Speed", turn);
     	SmartDashboard.putNumber("Drive Speed", drive);
         
     }
