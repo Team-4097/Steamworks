@@ -41,10 +41,10 @@ public class climber extends Subsystem {
     // here. Call these from Commands.
 
     public void takeJoytickInput(Joystick main){
-    	if(main.getRawButton(1)){
+    	if(main.getRawButton(3)){
     		climberMotor.set(1);
     	}
-    	else if(main.getRawButton(2)){
+    	else if(main.getRawButton(4)){
     		climberMotor.set(-1);
     	}
     	else{

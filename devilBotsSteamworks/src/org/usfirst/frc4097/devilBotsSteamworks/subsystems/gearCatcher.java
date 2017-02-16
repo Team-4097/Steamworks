@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedController;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**
@@ -43,19 +44,23 @@ public class gearCatcher extends Subsystem {
     
     public void takeJoytickInput(Joystick main){
     	
-    	if(main.getRawButton(0) && !bottomSwitch.get()){
-    		gearMotor.set(-1);
+    	SmartDashboard.putBoolean("Top Switch", topSwitch.get());
+    	SmartDashboard.putBoolean("Bottom Switch",bottomSwitch.get());
+    	
+    	
+    	if(main.getRawButton(1) && bottomSwitch.get()){
+    		gearMotor.set(-0.25);
     	}
-    	if(main.getRawButton(1) && !topSwitch.get()){
-    		gearMotor.set(1);
+    	if(main.getRawButton(2) && topSwitch.get()){
+    		gearMotor.set(0.25);
     	}
-    	if(gearMotor.get() == 1 && topSwitch.get()){
+    	if(gearMotor.get() == 1 && !topSwitch.get()){
     		gearMotor.stopMotor();
     	}
-    	if(gearMotor.get() == -1 && bottomSwitch.get()){
+    	if(gearMotor.get() == -1 && !bottomSwitch.get()){
     		gearMotor.stopMotor();
     	}
-    	if(!main.getRawButton(0) && !main.getRawButton(1)){
+    	if(!main.getRawButton(1) && !main.getRawButton(2)){
     		gearMotor.stopMotor();
     	}
     }
