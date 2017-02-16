@@ -1,3 +1,4 @@
+import controlP5.*;
 import edu.wpi.first.wpilibj.networktables.*;
 import edu.wpi.first.wpilibj.networktables2.type.*;
 import edu.wpi.first.wpilibj.tables.*;
@@ -6,17 +7,37 @@ import de.voidplus.leapmotion.*;
 
 LeapMotion leap;
 NetworkTable table;
+ControlP5 cp5;
+
+
+boolean useLeapBool = false;
 
 void setup() {
-  size(1024, 500);
+  size(500, 500);
   background(255);
 
   leap = new LeapMotion(this);
   
-  NetworkTable.setClientMode();
-  NetworkTable.setIPAddress("10.40.97.1");
-  table = NetworkTable.getTable("SmartDashboard");
+  cp5 = new ControlP5(this);
   
+  cp5.addTextfield("Robot IP:")
+     .setPosition(0,0)
+     .setSize(110,20)
+     ;
+  cp5.addButton("ConnectToRobot")
+     .setPosition(110,0)
+     .setSize(100,20)
+     .setValue(0)
+     ;
+}
+
+void ConnectToRobot(){
+  NetworkTable.setClientMode();
+  NetworkTable.setIPAddress(cp5.get(Textfield.class,"Robot IP:").getText());
+  table = NetworkTable.getTable("SmartDashboard");
+}
+void useLeap(){
+  useLeapBool = !useLeapBool;
 }
 
 
@@ -63,18 +84,19 @@ void draw() {
     float   sphereRadius       = hand.getSphereRadius();
 
     hand.draw();
+    table.putBoolean("driveWithLeap",useLeapBool);
     
-    float x = map(round(handPosition.x),50,650,-1,1);
-    float y = map(round(handPosition.y),420,90,-1,1);
-    float z = map(round(handPosition.z),0,60,-1,1);
+    if(useLeapBool){
+      float x = map(round(handPosition.x),50,650,-1,1);
+      float y = map(round(handPosition.y),420,90,-1,1);
+      float z = map(round(handPosition.z),0,60,-1,1);
     
+      table.putNumber("handX",x/2);
+      table.putNumber("handY",y/2);
+      table.putNumber("handZ",z/2);
+      table.putNumber("grabbing",round(handGrab));
+    }
     
-    table.putNumber("handX",x/2);
-    table.putNumber("handY",y/2);
-    table.putNumber("handZ",z/2);
-    table.putNumber("grabbing",round(handGrab));
-    table.putBoolean("driveWithLeap",true);
-
     if (hand.hasArm()) {
       Arm     arm              = hand.getArm();
       float   armWidth         = arm.getWidth();

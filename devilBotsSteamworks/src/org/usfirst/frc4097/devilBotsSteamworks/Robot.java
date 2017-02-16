@@ -72,7 +72,7 @@ public class Robot extends IterativeRobot {
     RobotMap.init();
     
     UsbCamera visionCamera = CameraServer.getInstance().startAutomaticCapture(0);
-    UsbCamera driveCamera = CameraServer.getInstance().startAutomaticCapture(1);
+    //UsbCamera driveCamera = CameraServer.getInstance().startAutomaticCapture(1);
     visionCamera.setResolution(IMG_WIDTH, IMG_HEIGHT);
     
     visionThread = new VisionThread(visionCamera, new GripPipeline(), pipeline -> {
@@ -138,15 +138,15 @@ public class Robot extends IterativeRobot {
     		SmartDashboard.putNumber("Target Width", width);
     	}
     	double turn = centerX - (IMG_WIDTH / 2);
-    	double drive = (width - 150)/150;
+    	double drive = (width - 39)/39;
     	
     	for(int i = 50; i > 0; i--){
-    		drive += (width - 150)/150;
+    		drive += (width - 39)/39;
     	}
     	drive /= 50;
     	
     	
-    	Robot.driveTrain.altDrive((float)drive/1.5f,0);
+    	Robot.driveTrain.altDrive((float)drive/0.75f,0);
     	SmartDashboard.putNumber("Turn Speed", turn);
     	SmartDashboard.putNumber("Drive Speed", drive);
         
