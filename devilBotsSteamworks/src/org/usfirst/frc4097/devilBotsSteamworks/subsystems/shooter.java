@@ -44,7 +44,7 @@ public class shooter extends Subsystem {
     	
     	
     	if(main.getRawButton(6)){
-    		shooterMotor.set(0.65);
+    		shooterMotor.set(0.8);
     	}
     	else{
     		shooterMotor.stopMotor();

@@ -21,7 +21,6 @@ import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.livewindow.LiveWindowSendable;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.vision.VisionThread;
@@ -71,8 +70,6 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
     RobotMap.init();
-    
-    LiveWindow.addActuator("Shooter", "Shooter Power", (LiveWindowSendable) RobotMap.shootershooterMotor);
     
     UsbCamera visionCamera = CameraServer.getInstance().startAutomaticCapture(0);
     //UsbCamera driveCamera = CameraServer.getInstance().startAutomaticCapture(1);
