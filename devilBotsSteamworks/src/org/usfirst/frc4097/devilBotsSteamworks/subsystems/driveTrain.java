@@ -20,6 +20,7 @@ import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Victor;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**
@@ -48,7 +49,7 @@ public class driveTrain extends Subsystem {
     
     
     public void takeJoytickInput(Joystick main){
-    	robotDrive.arcadeDrive(main);
+    	robotDrive.arcadeDrive(main.getY() * main.getThrottle() * -1, main.getX());
     }
     public void stop(){
     	robotDrive.drive(0, 0);

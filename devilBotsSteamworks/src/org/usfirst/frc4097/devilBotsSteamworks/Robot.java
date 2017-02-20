@@ -78,10 +78,12 @@ public class Robot extends IterativeRobot {
     visionThread = new VisionThread(visionCamera, new GripPipeline(), pipeline -> {
         if (!pipeline.filterContoursOutput().isEmpty()) {
             Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
-            Rect q = Imgproc.boundingRect(pipeline.filterContoursOutput().get(1));
+            //Rect q = Imgproc.boundingRect(pipeline.filterContoursOutput().get(1));
+
+            
             synchronized (imgLock) {
-                centerX = ((r.x + (r.width / 2)) + (q.x + (q.x / 2))) / 2;
-                width = (r.width + q.width) / 2;
+                centerX = (r.x + (r.width / 2));
+                width = r.width;
             }
         }
     });
@@ -141,14 +143,23 @@ public class Robot extends IterativeRobot {
     	double turn = centerX - (IMG_WIDTH / 2);
     	double drive = (width - 39)/39;
     	
+    	double turnSpeed = map(turn,90,26,0.3,-0.3);
+    	
     	for(int i = 50; i > 0; i--){
     		drive += (width - 39)/39;
     	}
     	drive /= 50;
+    	drive /= 1.15;
     	
-    	
-    	Robot.driveTrain.altDrive((float)drive/0.75f,0);
-    	SmartDashboard.putNumber("Turn Speed", turn);
+    	if(width < 35){
+    		//Robot.driveTrain.altDrive(-0.5f,0);
+    	}else if(width > 35 && width < 50){
+    		//Robot.driveTrain.altDrive(-0.45f,0);
+    	}else{
+    		//Robot.driveTrain.altDrive(0, 0);
+    	}
+    	SmartDashboard.putNumber("Turn Distance", turn);
+    	SmartDashboard.putNumber("Turn Speed", turnSpeed);
     	SmartDashboard.putNumber("Drive Speed", drive);
         
     }
@@ -184,4 +195,10 @@ public class Robot extends IterativeRobot {
     public void testPeriodic() {
         LiveWindow.run();
     }
+    
+    double map(double turn, double in_min, double in_max, double out_min, double out_max)
+    {
+      return (turn - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+    }
+    
 }

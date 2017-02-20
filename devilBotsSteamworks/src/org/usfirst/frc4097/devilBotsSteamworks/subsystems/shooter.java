@@ -47,12 +47,15 @@ public class shooter extends Subsystem {
     	if(main.getRawButton(6)){
     		shooterMotor.set(0.96);
     	}
+    	else if(main.getRawButton(8)){
+    		shooterMotor.set(-0.5);
+    	}
     	else{
     		shooterMotor.stopMotor();
     	}
     	// Above is for shooter, Below for Hopper
     	if(main.getRawButton(5)){
-    		speedAccuator.set(-1.);
+    		speedAccuator.set(-1.0);
     	}
     	else{
     		speedAccuator.stopMotor();
