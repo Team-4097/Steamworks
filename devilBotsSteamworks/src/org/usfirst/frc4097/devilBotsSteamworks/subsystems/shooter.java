@@ -16,9 +16,10 @@ import org.usfirst.frc4097.devilBotsSteamworks.commands.*;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.Victor;
 
 import edu.wpi.first.wpilibj.command.Subsystem; 
+import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.command.PIDSubsystem;
 
 
 /**
@@ -86,5 +87,24 @@ public class shooter extends Subsystem {
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
     }
-}
+    public abstract class Shooter extends PIDSubsystem{
+    	SpeedController motor = RobotMap.shootershooterMotor;
+    	AnalogInput pot = RobotMap.shooterPot();
+    	public Shooter() {
+    		super("Motor Speed", 2.0, 0.0, 0.0);
+    		setAbsoluteTolerance(0.05);
+    		getPIDController().setContinuous(false);
+    	}
+    	public void initDefaultCommand() {
+        }
+
+        protected double returnPIDInput() {
+        	return pot.getAverageVoltage();
+        }
+
+        protected void usePIDOutput(double output) {
+        	motor.pidWrite(output);
+        }
+    }
+    }
 
