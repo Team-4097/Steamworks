@@ -17,8 +17,7 @@ import org.usfirst.frc4097.devilBotsSteamworks.commands.*;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SpeedController;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.command.Subsystem; 
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 
@@ -106,7 +105,6 @@ public class shooter extends Subsystem {
         protected void usePIDOutput(double output) {
         	motor.pidWrite(output);
         }
-        SmartDashboard.putData("Voltage", PIDOutput);
-    } 
+    }
     }
 
