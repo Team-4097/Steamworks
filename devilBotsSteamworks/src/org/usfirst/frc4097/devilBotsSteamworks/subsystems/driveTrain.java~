@@ -43,8 +43,8 @@ public class driveTrain extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     
-    public void altDrive(float drive, double turnSpeed){
-    	robotDrive.arcadeDrive(drive, turnSpeed);
+    public void altDrive(double d, double turnSpeed){
+    	robotDrive.arcadeDrive(d, turnSpeed);
     }
     
     
@@ -66,5 +66,6 @@ public class driveTrain extends Subsystem {
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
     }
+
 }
 
