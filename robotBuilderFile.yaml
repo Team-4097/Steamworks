@@ -97,6 +97,22 @@ Children:
           value: '3'
       Base: Speed Controller
       Name: climberMotor
+    - Children: []
+      Properties:
+        Type: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id001
+          default: Talon
+          name: Type
+          validators: null
+          value: Talon
+        Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id002
+          default: '0'
+          name: Output Channel (PWM)
+          validators: *id003
+          value: '2'
+      Base: Speed Controller
+      Name: climberMotor2
     Properties:
       Default command parameters: !!robotbuilder.data.properties.ParametersProperty
         default: []
@@ -126,7 +142,7 @@ Children:
           default: '0'
           name: Output Channel (PWM)
           validators: *id003
-          value: '2'
+          value: '6'
       Base: Speed Controller
       Name: gearMotor
     - Children: []
@@ -424,7 +440,7 @@ Children:
   Base: Commands
   Name: Commands
 Properties:
-  Eclipse Workspace: !!robotbuilder.data.properties.FileProperty {default: /Users/jacobbashista/workspace,
+  Eclipse Workspace: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Student\workspace',
     extension: null, folder: true, name: Eclipse Workspace, validators: null, value: ./}
   Export Commands: !!robotbuilder.data.properties.BooleanProperty {default: true,
     name: Export Commands, validators: null, value: true}
@@ -443,7 +459,7 @@ Properties:
     name: Export Subsystems, validators: null, value: true}
   Simulation World File: !!robotbuilder.data.properties.StringProperty {default: /usr/share/frcsim/worlds/GearsBotDemo.world,
     name: Simulation World File, validators: null, value: /usr/share/frcsim/worlds/GearsBotDemo.world}
-  Wiring file location: !!robotbuilder.data.properties.FileProperty {default: /Users/jacobbashista/,
+  Wiring file location: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Student\',
     extension: null, folder: true, name: Wiring file location, validators: null, value: /Users/jacobbashista/}
   Autonomous Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
     name: Autonomous Command, type: Command, validators: null, value: None}

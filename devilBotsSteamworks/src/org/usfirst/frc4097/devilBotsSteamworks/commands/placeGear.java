@@ -67,7 +67,14 @@ public class placeGear extends Command {
             if (!pipeline.filterContoursOutput().isEmpty()) {
                 Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
                 //Rect q = Imgproc.boundingRect(pipeline.filterContoursOutput().get(1));
-
+                
+                //float centerR = (r.x + (r.width / 2));
+                //float centerQ = (q.x + (q.width / 2));
+                
+                //SmartDashboard.putNumber("Center R", centerR);
+                //SmartDashboard.putNumber("Center Q", centerQ);
+                
+                //centerX = centerR + centerQ;
                 
                 synchronized (imgLock) {
                     centerX = (r.x + (r.width / 2));
@@ -100,12 +107,12 @@ public class placeGear extends Command {
     	drive /= 1.15;
     	
     	if(width < 35){
-    		Robot.driveTrain.altDrive(-0.60f,-0.2);
+    		Robot.driveTrain.altDrive(-0.60f,-0.25);
     	}else{
     		Robot.driveTrain.altDrive(0, 0);
     	}
     	SmartDashboard.putNumber("Turn Distance", turn);
-    	SmartDashboard.putNumber("Turn Speed", turnSpeed);
+    	SmartDashboard.putNumber("Turn Speed", centerX);
     	SmartDashboard.putNumber("Drive Speed", drive);
     }
 

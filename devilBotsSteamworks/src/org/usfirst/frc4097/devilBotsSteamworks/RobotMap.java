@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.smartdashboard.*;
@@ -37,6 +38,7 @@ public class RobotMap {
     public static SpeedController driveTrainrightMotor;
     public static RobotDrive driveTrainrobotDrive;
     public static SpeedController climberclimberMotor;
+    public static SpeedController climberclimberMotor2;
     public static SpeedController gearCatchergearMotor;
     public static DigitalInput gearCatchertopSwitch;
     public static DigitalInput gearCatcherbottomSwitch;
@@ -66,7 +68,10 @@ public class RobotMap {
         climberclimberMotor = new Spark(3);
         LiveWindow.addActuator("climber", "climberMotor", (Spark) climberclimberMotor);
         
-        gearCatchergearMotor = new Spark(2);
+        climberclimberMotor2 = new Talon(2);
+        LiveWindow.addActuator("climber", "climberMotor2", (Talon) climberclimberMotor2);
+        
+        gearCatchergearMotor = new Spark(6);
         LiveWindow.addActuator("gearCatcher", "gearMotor", (Spark) gearCatchergearMotor);
         
         gearCatchertopSwitch = new DigitalInput(0);
