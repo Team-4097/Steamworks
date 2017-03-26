@@ -49,7 +49,7 @@ public class driveForwards extends Command {
     	count += 1;
     	SmartDashboard.putNumber("Time Count", count);
     	// Robot.driveTrain.altDrive(-0.5, 0.0);
-    	if(count <= 850){
+    	if(count <= 1000){
     		Robot.driveTrain.altDrive(-0.5f,-0.25);
     	}else{
     		Robot.driveTrain.altDrive(0.0, 0.0);

@@ -38,6 +38,7 @@ public class placeGear extends Command {
 	private double width = 0.0;
 	
 	long cnt = 0;
+	int count = 0;
 	
 	private final Object imgLock = new Object();
 	
@@ -87,37 +88,49 @@ public class placeGear extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double centerX;
-        double width;
-    	synchronized (imgLock) {
-    		centerX = this.centerX;
-    		width = this.width;
-    		SmartDashboard.putNumber("Center of Target", centerX);
-    		SmartDashboard.putNumber("Target Width", width);
-    	}
-    	double turn = centerX - (IMG_WIDTH / 2);
-    	double drive = (width - 39)/39;
+//    	double centerX;
+//        double width;
+//    	synchronized (imgLock) {
+//    		centerX = this.centerX;
+//    		width = this.width;
+//    		SmartDashboard.putNumber("Center of Target", centerX);
+//    		SmartDashboard.putNumber("Target Width", width);
+//    	}
+//    	double turn = centerX - (IMG_WIDTH / 2);
+//    	double drive = (width - 39)/39;
+//    	
+//    	double turnSpeed = Robot.map(turn,90,26,0.3,-0.3);
+//    	
+//    	for(int i = 50; i > 0; i--){
+//    		drive += (width - 39)/39;
+//    	}
+//    	drive /= 50;
+//    	drive /= 1.15;
+//    	
+//    	if(width < 35){
+//    		Robot.driveTrain.altDrive(-0.60f,-0.25);
+//    	}else{
+//    		Robot.driveTrain.altDrive(0, 0);
+//    	}
+//    	SmartDashboard.putNumber("Turn Distance", turn);
+//    	SmartDashboard.putNumber("Turn Speed", centerX);
+//    	SmartDashboard.putNumber("Drive Speed", drive);
     	
-    	double turnSpeed = Robot.map(turn,90,26,0.3,-0.3);
-    	
-    	for(int i = 50; i > 0; i--){
-    		drive += (width - 39)/39;
-    	}
-    	drive /= 50;
-    	drive /= 1.15;
-    	
-    	if(width < 35){
-    		Robot.driveTrain.altDrive(-0.60f,-0.25);
+    	count += 1;
+    	SmartDashboard.putNumber("Time Count", count);
+    	// Robot.driveTrain.altDrive(-0.5, 0.0);
+    	if(count <= 400){
+    		Robot.driveTrain.altDrive(-0.5f,-0.17);
     	}else{
-    		Robot.driveTrain.altDrive(0, 0);
+    		Robot.driveTrain.altDrive(0.0, 0.0);
     	}
-    	SmartDashboard.putNumber("Turn Distance", turn);
-    	SmartDashboard.putNumber("Turn Speed", centerX);
-    	SmartDashboard.putNumber("Drive Speed", drive);
+    	
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+    	count = 0;
         return false;
     }
 
