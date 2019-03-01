@@ -20,6 +20,7 @@ import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedController;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**
@@ -55,6 +56,26 @@ public class climber extends Subsystem {
     		climberMotor2.stopMotor();
     	}
     }
+    
+    public void climbWithLeap(){
+    	double climbValue = SmartDashboard.getNumber("handY");
+    	if(climbValue > 0.5){
+    		climberMotor.set(1);
+    		climberMotor2.set(1);
+    	}
+    	else if(climbValue < -0.5){
+    		climberMotor.set(-1);
+    		climberMotor2.set(-1);
+    	}
+    	else{
+    		climberMotor.stopMotor();
+    		climberMotor2.stopMotor();
+    	}
+    }
+    	
+    	
+    	
+    
     public void stop(){
     	climberMotor.stopMotor();
     	climberMotor2.stopMotor();

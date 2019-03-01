@@ -49,7 +49,7 @@ public class driveTrain extends Subsystem {
     
     
     public void takeJoytickInput(Joystick main){
-    	robotDrive.arcadeDrive(main.getY() * main.getThrottle() * -1, main.getX());
+    	robotDrive.arcadeDrive(main.getX() * main.getThrottle() * 1, main.getY());
     }
     public void stop(){
     	robotDrive.drive(0, 0);

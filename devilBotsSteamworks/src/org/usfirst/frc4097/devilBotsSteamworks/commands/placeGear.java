@@ -119,7 +119,7 @@ public class placeGear extends Command {
     	count += 1;
     	SmartDashboard.putNumber("Time Count", count);
     	// Robot.driveTrain.altDrive(-0.5, 0.0);
-    	if(count <= 400){
+    	if(count <= 200){
     		Robot.driveTrain.altDrive(-0.5f,-0.17);
     	}else{
     		Robot.driveTrain.altDrive(0.0, 0.0);
